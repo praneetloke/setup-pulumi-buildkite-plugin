@@ -1,0 +1,12 @@
+name: Setup Pulumi
+description: Install Pulumi for use in Buildkite builds
+author: https://github.com/praneetloke
+requirements:
+  - curl
+  - jq
+  - funzip
+  - bash
+configuration:
+  properties:
+    version:
+      type: string
