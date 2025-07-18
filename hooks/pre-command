@@ -4,7 +4,7 @@ set -euo pipefail
 
 echo "~~~ Setup Pulumi"
 
-PULUMI_VERSION="${BUILDKITE_PLUGIN_SETUP_PULUMI_VERSION:-$(curl --silent --show-error "https://www.pulumi.com/latest-version" | jq --raw-output ".tag_name")}"
+PULUMI_VERSION="${BUILDKITE_PLUGIN_SETUP_PULUMI_VERSION:-$(curl --silent --show-error "https://www.pulumi.com/latest-version")}"
 
 curl -fsSL https://get.pulumi.com | sh -s -- --version $PULUMI_VERSION
 
