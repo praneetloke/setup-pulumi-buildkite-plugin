@@ -20,9 +20,16 @@ if [ "${USE_OIDC}" != "true" ] && [ -z "${PULUMI_ACCESS_TOKEN:-}" ] && [ "${BACK
     exit 1
 if
 
+if [ "${USE_OIDC}" != "true" ]; then
+    pulumi version
+    exit 0
+fi
+
+# The following steps assume `USE_OIDC` is true.
+
 OIDC_AUDIENCE = "${BUILDKITE_PLUGIN_SETUP_PULUMI_AUDIENCE:-}"
 
-if [ "${USE_OIDC}" = "true] && [ -z "${OIDC_AUDIENCE:-}" ]; then
+if [ -z "${OIDC_AUDIENCE:-}" ]; then
     echo "❌ audience is required when using OIDC auth method with Pulumi Cloud."
     exit 1
 fi
