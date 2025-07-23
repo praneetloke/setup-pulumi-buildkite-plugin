@@ -8,6 +8,7 @@ PULUMI_VERSION="${BUILDKITE_PLUGIN_SETUP_PULUMI_VERSION:-$(curl --silent --show-
 
 curl -fsSL https://get.pulumi.com | sh -s -- --version $PULUMI_VERSION
 
+export PATH="$HOME/.pulumi/bin:$PATH"
 pulumi version
 
 USE_OIDC="${BUILDKITE_PLUGIN_SETUP_PULUMI_USE_OIDC:-false}"
