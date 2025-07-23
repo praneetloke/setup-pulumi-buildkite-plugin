@@ -13,12 +13,12 @@ pulumi version
 
 USE_OIDC="${BUILDKITE_PLUGIN_SETUP_PULUMI_USE_OIDC:-false}"
 PULUMI_CLOUD_BACKEND_URL="https://api.pulumi.com"
-BACKEND_URL="${BUILDKITE_PLUGIN_SETUP_PULUMI_BACKEND_URL:-$PULUMI_CLOUD_BACKEND_URL}
+BACKEND_URL="${BUILDKITE_PLUGIN_SETUP_PULUMI_BACKEND_URL:-$PULUMI_CLOUD_BACKEND_URL}"
 
 if [ "${USE_OIDC}" != "true" ] && [ -z "${PULUMI_ACCESS_TOKEN:-}" ] && [ "${BACKEND_URL}" = "${PULUMI_CLOUD_BACKEND_URL}" ]; then
     echo "❌ PULUMI_ACCESS_TOKEN is required for Pulumi Cloud backend since OIDC is not used."
     exit 1
-if
+fi
 
 if [ "${USE_OIDC}" != "true" ]; then
     pulumi version
@@ -27,7 +27,7 @@ fi
 
 # The following steps assume `USE_OIDC` is true.
 
-OIDC_AUDIENCE = "${BUILDKITE_PLUGIN_SETUP_PULUMI_AUDIENCE:-}"
+OIDC_AUDIENCE="${BUILDKITE_PLUGIN_SETUP_PULUMI_AUDIENCE:-}"
 
 if [ -z "${OIDC_AUDIENCE:-}" ]; then
     echo "❌ audience is required when using OIDC auth method with Pulumi Cloud."
