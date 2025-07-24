@@ -61,7 +61,7 @@ if [ -z "${json:-}" ]; then
     exit 1
 fi
 
-pul_access_token=$(echo $json | jq '.access_token')
+pul_access_token=$(echo $json | jq -r -c '.access_token')
 
 PULUMI_ACCESS_TOKEN=$pul_access_token pulumi login "${BACKEND_URL}"
 
