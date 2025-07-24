@@ -45,13 +45,13 @@ if [ -z "${PULUMI_TOKEN_TYPE:-}" ] || [ -z "${PULUMI_TOKEN_SCOPE:-}" ]; then
 fi
 
 pul_access_token=$(curl -X POST  \
-        -H 'Content-Type: application/x-www-form-urlencoded' \
-        -d 'audience=$OIDC_AUDIENCE' \
-        -d 'grant_type=urn:ietf:params:oauth:grant-type:token-exchange' \
-        -d 'subject_token_type=urn:ietf:params:oauth:token-type:id_token' \
-        -d 'requested_token_type=$PULUMI_TOKEN_TYPE' \
-        -d 'scope=$PULUMI_TOKEN_SCOPE' \
-        -d 'subject_token=$bk_token' \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -d "audience=$OIDC_AUDIENCE" \
+        -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange" \
+        -d "subject_token_type=urn:ietf:params:oauth:token-type:id_token" \
+        -d "requested_token_type=$PULUMI_TOKEN_TYPE" \
+        -d "scope=$PULUMI_TOKEN_SCOPE" \
+        -d "subject_token=$bk_token" \
         https://api.pulumi.com/api/oauth/token)
 
 PULUMI_ACCESS_TOKEN=$pul_access_token pulumi login "${BACKEND_URL}"
