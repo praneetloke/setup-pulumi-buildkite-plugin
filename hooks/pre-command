@@ -9,7 +9,9 @@ PULUMI_VERSION="${BUILDKITE_PLUGIN_SETUP_PULUMI_VERSION:-$(curl --silent --show-
 curl -fsSL https://get.pulumi.com | sh -s -- --version $PULUMI_VERSION
 
 export PATH="$HOME/.pulumi/bin:$PATH"
-pulumi version
+
+ACTUAL_PULUMI_VERSION=$(pulumi version)
+echo "Pulumi version: $ACTUAL_PULUMI_VERSION"
 
 USE_OIDC="${BUILDKITE_PLUGIN_SETUP_PULUMI_USE_OIDC:-false}"
 PULUMI_CLOUD_BACKEND_URL="https://api.pulumi.com"
@@ -21,7 +23,6 @@ if [ "${USE_OIDC}" != "true" ] && [ -z "${PULUMI_ACCESS_TOKEN:-}" ] && [ "${BACK
 fi
 
 if [ "${USE_OIDC}" != "true" ]; then
-    pulumi version
     exit 0
 fi
 
